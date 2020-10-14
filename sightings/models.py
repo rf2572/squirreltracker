@@ -12,6 +12,28 @@ class Squirrel(models.Model):
             blank=True,
             )
 
-    # sighting_link will need to be changed
+    latitude = models.CharField(
+            max_length=30,
+            help_text=_('Latitude of sighting'),
+            blank=True,
+            )
+
+    longitude = models.CharField(
+            max_length=30,
+            help_text=_('Longitude of sighting'),
+            blank=True,
+            )
+
+    shift = models.CharField(
+            max_length=2,
+            help_text=_('AM or PM'),
+            blank=True,
+            )
+
+    age = models.CharField(
+            max_length=20,
+            help_text=_('Squirrel age'),
+            blank=True,
+            )
 
 # Create your models here.
