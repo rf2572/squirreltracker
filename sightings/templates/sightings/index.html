@@ -1,4 +1,12 @@
 <!doctype html>
 <html>
-	<body>Welcome to our squirrel sightings page!</body>
+	<body>
+	<ul>
+	{% for squir in Squirrels%}
+	<li><a href"{% url 'adopt:detail' pet.id  %}">{{squir.unique_id}}</a></li>
+		{{squir.sighting_date}}
+		{{squir.unique_id}}
+	{% endfor %}
+	</ul>
+	</body>
 </html>
