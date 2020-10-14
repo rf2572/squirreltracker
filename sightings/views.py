@@ -12,10 +12,10 @@ def index(request):
     return render(request, 'sightings/index.html', context)
 
 def detail(request, squirrel_id):
-    squirrel = get_object_or_404(Pet, pk=squirrel_id)
+    squirrel = get_object_or_404(Squirrel, pk=squirrel_id)
 
     context = {
-            'squirrel':squirrel,
+            'Squirrel':squirrel,        
             }
     return render(request, 'sightings/detail.html', context)
 

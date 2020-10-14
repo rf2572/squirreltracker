@@ -3,9 +3,9 @@
 	<body>
 	<ul>
 	{% for squir in Squirrels%}
-	<li><a href"{% url 'adopt:detail' pet.id  %}">{{squir.unique_id}}</a></li>
-		{{squir.sighting_date}}
-		{{squir.unique_id}}
+	{{squir.unique_id}}
+	{{squir.sighting_date}}
+	<li><a href="{% url 'sightings:detail' squir.id %}">{{squir.id}}</a></li>
 	{% endfor %}
 	</ul>
 	</body>
