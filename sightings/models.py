@@ -37,4 +37,5 @@ class Squirrel(models.Model):
             blank=True,
             )
 
+
 # Create your models here.

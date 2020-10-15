@@ -2,10 +2,12 @@
 <html>
 	<body>
 	<ul>
+	<a href="{'add'}">Click here to add new sighting.</a>
 	{% for squir in Squirrels%}
-	{{squir.unique_id}}
-	{{squir.sighting_date}}
-	<li><a href="{% url 'sightings:detail' squir.id %}">{{squir.id}}</a></li>
+	<li>{{squir.unique_id}}</li>
+	{{squir.sighting_date}}</br>
+	<a href="{% url 'sightings:detail' squir.id %}">{{squir.id}}</a>
+	</br>
 	{% endfor %}
 	</ul>
 	</body>

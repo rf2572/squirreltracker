@@ -22,7 +22,7 @@ class Command(BaseCommand):
                 obj.latitude = item['X']
                 obj.longitude = item['Y']
                 obj.shift = item['Shift']
-                obj.sightings_date = item['Date']
+                obj.sighting_date = item['Date']
                 obj.age = item['Age']
 
                 obj.save()
