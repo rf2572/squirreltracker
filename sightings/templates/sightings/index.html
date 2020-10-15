@@ -1,14 +1,40 @@
-<!doctype html>
-<html>
-	<body>
-	<ul>
-	<a href="{'add'}">Click here to add new sighting.</a>
-	{% for squir in Squirrels%}
-	<li>{{squir.unique_id}}</li>
-	{{squir.sighting_date}}</br>
-	<a href="{% url 'sightings:detail' squir.id %}">{{squir.id}}</a>
-	</br>
-	{% endfor %}
-	</ul>
-	</body>
-</html>
+{% extends 'sightings/base.html' %}
+
+{% load static %}
+
+{% block title %} - All Squirrel Sightings{% endblock %}
+
+{% block main %}
+  <div class="album py-5 bg-light">
+    <div class="container">
+	    <p><a href="{% url 'sightings:add' %}">Click here to add new sighting.</a></p>
+	<div class="row">
+        {% for squir in Squirrels%}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body"
+              <p class="card-text">
+                <div class="squirrel-id">
+                  <strong>{{ squir.unique_id }}</strong>
+                </div>
+                <div>
+                  <span class="text-muted font-italic">Sighting date</span>
+                  <span>
+                    {{ squir.sighting_date }}
+                  </span>
+                </div>
+              </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a class="btn btn-sm btn-outline-secondary" href="{% url 'sightings:detail' squir.id %}">View</a>
+		</div>
+	      </div>
+	    </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
