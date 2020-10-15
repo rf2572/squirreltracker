@@ -35,4 +35,13 @@ def update(request):
                 return JsonResponse({'errors': form.errors}, status=400)
 
     return JsonResponse({}, status=405)
+
+def map(request):
+    squirrels = Squirrel.objects.all()[:100]
+    context = {
+            'squirrels': squirrels,
+            }
+
+    return render(request, 'sightings/map.html', context)
+
 # Create your views here.

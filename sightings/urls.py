@@ -9,4 +9,5 @@ urlpatterns = [
         path('<int:squirrel_id>/', views.detail, name='detail'),
         path('add/', views.add, name='add'),
         path('update/', views.update, name='update'),
+        path('map/', views.map, name='map'),
         ]
