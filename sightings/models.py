@@ -8,7 +8,7 @@ class Squirrel(models.Model):
             )
 
     sighting_date = models.CharField(
-            max_length=20,
+            max_length =20,
             help_text=_('Date of squirrel sighting'),
             blank=True,
             )
