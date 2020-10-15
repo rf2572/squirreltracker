@@ -1,8 +1,61 @@
-<html>
+{% extends 'sightings/base.html' %}
 
-	<body>
-		'This is the page to add a request.'
-	</body>
+{% load static %}
 
+{% block title %} - Let's add a new sighting!{% endblock %}
 
-</html>
+{% block main %}
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+	    <form id="submit" method="post" action="{% url 'sightings:update' %}" class="input-group mb-3">
+            {% csrf_token %}
+	    <p><input type="text"
+                   name="unique_id"
+                   class="form-control"
+                   placeholder="Squirrel Unique ID."
+		   aria-label="Squirrel Unique ID."/> 
+	    </p>
+	    <p><input type="text"
+                   name="latitude"
+                   class="form-control"
+                   placeholder="Sighting Latitude."
+		   aria-label="Squirrel Latitude."/> 
+	    </p>
+	    <p><input type="text"
+                   name="longitude"
+                   class="form-control"
+                   placeholder="Sighting Longitude."
+                   aria-label="Squirrel Longitude."/>
+	    </p>
+	    <p><input type="text"
+                   name="shift"
+                   class="form-control"
+                   placeholder="Sighting Shift."
+                   aria-label="Sighting Shift."/>
+	    </p>
+	    <p><input type="text"
+                   name="age"
+                   class="form-control"
+                   placeholder="Squirrel Age."
+                   aria-label="Squirrel Age"/>
+	    </p>
+	    <p><input type="text"
+                   name="sighting_date"
+                   class="form-control"
+                   placeholder="Sighting Date MMDDYYYY."
+                   aria-label="Sighting Date MMDDYYYY."/>
+	    </p>
+	    <p>
+	    <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit">Add new sighting.</button>
+            </div>
+            <div id="errors" class="mb-3"></div>
+	    </p>
+	    </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

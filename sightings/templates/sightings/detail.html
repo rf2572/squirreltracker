@@ -1,10 +1,112 @@
-<html>
-	<body>
-		Unique Squirrel ID:{{ Squirrel.unique_id }}<br/>
-		Latitude:{{ Squirrel.latitude }}<br/>
-		Longitude:{{ Squirrel.longitude}}<br/>
-		Shift:{{ Squirrel.shift }}<br/>
-		Date:{{ Squirrel.sighting_date }}<br/>
-		Age:{{	Squirrel.age  }}<br/>
-	</body>
-</html>
+{% extends 'adopt/base.html' %}
+
+{% load static %}
+
+{% block title %} - {{ Squirrel.unique_id }}{% endblock %}
+
+{% block main %}
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <form id="SquirrelForm" method="post" action="{% url 'sighting:update' %}" class="input-group mb-3">
+            {% csrf_token %}
+            <input type="text"
+                   name="age"
+                   class="form-control"
+                   placeholder="Edit"
+                   aria-label="Edited"/>
+            <input type="hidden" name="squirrel-id" value="{{ Squirrel.id }}">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit">Request</button>
+            </div>
+            <div id="errors" class="mb-3"></div>
+          </form>
+        </div>
+        <div class="col-md-8">
+          <div class="card mb-8 shadow-sm">
+            <div class="card-body">
+              <p class="card-text">
+                <div class="Squirrel-id">
+                  <strong>{{ Squirrel.unique_id }}</strong>
+                </div>
+                <div>
+                  <span class="text-muted font-italic">Latitude:</span>
+                  <span>
+                    {{ Squirrel.latitude }}
+                  </span>
+                </div>
+                <div>
+                  <span class="text-muted font-italic">Longitude:</span>
+                  <span>
+                    {{ Squirrel.longitude }}
+                  </span>
+                </div>
+                <div>
+                  <span class="text-muted font-italic">Shift:</span>
+                  <span>
+                    {{ Squirrel.shift }}
+                  </span>
+                </div>
+                <div>
+                  <span class="text-muted font-italic">Sighting date:</span>
+                  <span>
+			  {{ Squirrel.sighting_date }}
+                  </span>
+                </div>
+                <div>
+                  <span class="text-muted font-italic">Age:</span>
+                  <span>
+                    {{ Squirrel.age }}
+                  </span>
+                </div>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block extra_footer %}
+  <script>
+    function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+      }
+    });
+
+    $("#submit").submit(function(event) {
+      event.preventDefault();
+
+      var email = $('input[name=adopter]').val();
+
+      $.post({
+        url: "{% url 'adopt:request' %}",
+        data: {
+          pet: "{{ pet.id }}",
+          adopter: email,
+        },
+        dataType: "json",
+      }).done(function(response) {
+        $("#submit").html('Your request has been received!');
+      }).fail(function(response) {
+        if (response.statusText === "error") {
+          var errors = "Oops, looks like an error on our side. Please try again later.";
+        } else {
+          var errors = response.responseJSON.errors.adopter;
+        }
+        $("#submit").html(errors);
+      });
+    });
+  </script>
+{% endblock %}
+

@@ -25,12 +25,12 @@ def detail(request, squirrel_id):
 def add(request):
     return render(request, 'sightings/add.html', {})
 
-def pull_info(request):
+def update(request):
     if request.method == 'POST':
             form = SquirrelForm(request.POST)
             if form.is_valid():
                 form.save()
-                return JsonResponse ({})
+                return render(request, 'sightings/update.html', {})
             else:
                 return JsonResponse({'errors': form.errors}, status=400)
 
