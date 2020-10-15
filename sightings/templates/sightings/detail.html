@@ -1,4 +1,4 @@
-{% extends 'adopt/base.html' %}
+{% extends 'sightings/base.html' %}
 
 {% load static %}
 
@@ -9,12 +9,12 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4">
-          <form id="SquirrelForm" method="post" action="{% url 'sighting:update' %}" class="input-group mb-3">
+          <form id="SquirrelForm" method="post" action="{% url 'sightings:update' %}" class="input-group mb-3">
             {% csrf_token %}
             <input type="text"
                    name="age"
                    class="form-control"
-                   placeholder="Edit"
+                   placeholder="Edit age."
                    aria-label="Edited"/>
             <input type="hidden" name="squirrel-id" value="{{ Squirrel.id }}">
             <div class="input-group-append">
@@ -87,13 +87,13 @@
     $("#submit").submit(function(event) {
       event.preventDefault();
 
-      var email = $('input[name=adopter]').val();
+      var age = $('input[age=age]').val();
 
       $.post({
-        url: "{% url 'adopt:request' %}",
+        url: "{% url 'sightings:update' %}",
         data: {
-          pet: "{{ pet.id }}",
-          adopter: email,
+          squirrel.id: "{{ squirrel.id }}",
+          age: age,
         },
         dataType: "json",
       }).done(function(response) {

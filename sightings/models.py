@@ -13,14 +13,12 @@ class Squirrel(models.Model):
             blank=True,
             )
 
-    latitude = models.CharField(
-            max_length=30,
+    latitude = models.FloatField(
             help_text=_('Latitude of sighting'),
             blank=True,
             )
 
-    longitude = models.CharField(
-            max_length=30,
+    longitude = models.FloatField(
             help_text=_('Longitude of sighting'),
             blank=True,
             )
