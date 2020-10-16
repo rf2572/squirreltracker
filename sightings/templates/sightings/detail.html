@@ -9,7 +9,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4">
-          <form id="SquirrelForm" method="post" action="{% url 'sightings:update' %}" class="input-group mb-3">
+          <form id="SquirrelForm" method="post" action="{% url 'sightings:edit' Squirrel.id %}" class=input-group mb-3">
             {% csrf_token %}
             <p><input type="text"
                    name="latitude"
@@ -27,7 +27,7 @@
             </p>
             <div id="errors" class="mb-3"></div>
           </form>
-	  <form id="SquirrelForm" method="post" action="{% url 'sightings:update' %}" class="input-group mb-3">
+	  <form id="SquirrelForm" method="post" action="{% url 'sightings:edit' Squirrel.id %}" class="input-group mb-3">
             {% csrf_token %}
             <p><input type="text"
                    name="longitude"
@@ -45,7 +45,7 @@
             </p>
             <div id="errors" class="mb-3"></div>
           </form>
-	  <form id="SquirrelForm" method="post" action="{% url 'sightings:update' %}" class="input-group mb-3">
+	  <form id="SquirrelForm" method="post" action="{% url 'sightings:edit' Squirrel.id %}" class="input-group mb-3">
             {% csrf_token %}
             <p><input type="text"
                    name="shift"
@@ -63,7 +63,7 @@
             </p>
             <div id="errors" class="mb-3"></div>
           </form>
-	  <form id="SquirrelForm" method="post" action="{% url 'sightings:update' %}" class="input-group mb-3">
+	  <form id="SquirrelForm" method="post" action="{% url 'sightings:edit' Squirrel.id %}" class="input-group mb-3">
             {% csrf_token %}
             <p><input type="text"
                    name="sighting_date"
@@ -81,7 +81,7 @@
             </p>
             <div id="errors" class="mb-3"></div>
           </form>
-	  <form id="SquirrelForm" method="post" action="{% url 'sightings:update' %}" class="input-group mb-3">
+	  <form id="SquirrelForm" method="post" action="{% url 'sightings:edit' Squirrel.id %}" class="input-group mb-3">
             {% csrf_token %}
             <p><input type="text"
                    name="age"
@@ -167,7 +167,7 @@
       var age = $('input[age=age]').val();
 
       $.post({
-        url: "{% url 'sightings:update' %}",
+        url: "{% url 'sightings:edit' Squirrel.id %}",
         data: {
           squirrel.id: "{{ squirrel.id }}",
           age: age,

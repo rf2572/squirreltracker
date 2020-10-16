@@ -25,12 +25,29 @@ def detail(request, squirrel_id):
 def add(request):
     return render(request, 'sightings/add.html', {})
 
-def update(request):
+def edit(request, squirrel_id):
+    squirrel = get_object_or_404(Squirrel, pk=squirrel_id)
+
+    context = {
+            'squirrel':squirrel,
+            }
+
+    if request.method == 'POST':
+            form = SquirrelForm(request.POST, instance=squirrel)
+            if form.is_valid():
+                form.save()
+                return render(request, 'sightings/edit.html', context)
+            else:
+                return JsonResponse({'errors': form.errors}, status=400)
+    return JsonResponse({}, status=405)
+
+
+def create(request):
     if request.method == 'POST':
             form = SquirrelForm(request.POST)
             if form.is_valid():
                 form.save()
-                return render(request, 'sightings/update.html', {})
+                return render(request, 'sightings/create.html', {})
             else:
                 return JsonResponse({'errors': form.errors}, status=400)
 
