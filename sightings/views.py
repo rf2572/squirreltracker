@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from .forms import SquirrelForm
 
 from .models import Squirrel
+from django.core import serializers
 
 def index(request):
     squir = Squirrel.objects.all()
@@ -61,4 +62,12 @@ def map(request):
 
     return render(request, 'sightings/map.html', context)
 
+def stats(request):
+    return render(request, 'sightings/stats.html', {})
+
+def pivot_data(request):
+    dataset = Squirrel.objects.all()
+    data = serializers.serialize('json', dataset,)
+    return JsonResponse(data, safe=False)
+    
 # Create your views here.
