@@ -3,8 +3,94 @@
 {% load static %}
 
 {% block title %} - Squirrel Statistics{% endblock %}
+
 {% block main %}
 
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Combination', 'Sightings'],
+                ['Juvenile & AM',     {{ YOUNGAM_count }}],
+                ['Juvenile & PM',     {{ YOUNGPM_count }}],
+                ['Adult & AM',  {{ ADULTAM_count }}],
+                ['Adult & PM', {{ ADULTPM_count }}],
+        ]);
+        var options = {
+          title: 'Squirrel Sightings Based on Age and Shift',
+          is3D: true,
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+  </body>
+
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Week', 'Squirrel Sightings'],
+	  ['Week 1',  {{ WEEK1_count }}],
+          ['Week 2',  {{ WEEK2_count }}],
+          ['Week 3',  {{ WEEK3_count }}]
+        ]);
+
+        var options = {
+          title: 'Sightings For 3 Weeks in October',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+  </body>
+
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Region', 'Number of Sightings'],
+          ['Northeast',     {{ NORTHEAST_count }}],
+          ['Northwest',      {{ NORTHWEST_count }}],
+          ['Southeast',  {{ SOUTHEAST_count }}],
+          ['Southwest', {{ SOUTHWEST_count }}]
+        ]);
+
+        var options = {
+          title: 'Sightings Per Region of the Park'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+  </body>
 
 
  
