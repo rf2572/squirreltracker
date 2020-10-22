@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 
 from django.core.management.base import BaseCommand, CommandError
 
@@ -22,8 +23,8 @@ class Command(BaseCommand):
                 obj.latitude = item['Y']
                 obj.longitude = item['X']
                 obj.shift = item['Shift']
-                obj.sighting_date = item['Date']
-                obj.age = item['Age']
+                obj.sighting_date = datetime.strptime(item['Date'], '%m%d%Y')
+                obj.age = item['Age'].lower()
 
                 obj.save()
 
