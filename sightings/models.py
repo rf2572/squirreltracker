@@ -14,6 +14,12 @@ class Squirrel(models.Model):
             blank=True,
             )
 
+    helper_date = models.CharField(
+            help_text=_('Helper function'),
+            max_length=20,
+            blank=True,
+            )
+
     latitude = models.FloatField(
             validators=[MinValueValidator(40.7644), MaxValueValidator(40.8006)], #uses Central Park coordinates for validation
             help_text=_('Latitude of sighting'),
