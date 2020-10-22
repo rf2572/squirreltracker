@@ -4,7 +4,6 @@ from django.http import JsonResponse
 from .forms import SquirrelForm
 
 from .models import Squirrel
-from django.core import serializers
 
 def index(request):
     squir = Squirrel.objects.all()
@@ -15,12 +14,13 @@ def index(request):
     return render(request, 'sightings/index.html', context)
 
 def detail(request, squirrel_id):
-    squirrel = get_object_or_404(Squirrel, pk=squirrel_id)
 
-    context = {
+   squirrel = get_object_or_404(Squirrel, pk=squirrel_id)
+
+   context = {
             'Squirrel':squirrel,        
             }
-    return render(request, 'sightings/detail.html', context)
+   return render(request, 'sightings/detail.html', context)
 
 
 def add(request):
@@ -65,9 +65,5 @@ def map(request):
 def stats(request):
     return render(request, 'sightings/stats.html', {})
 
-def pivot_data(request):
-    dataset = Squirrel.objects.all()
-    data = serializers.serialize('json', dataset,)
-    return JsonResponse(data, safe=False)
-    
+ 
 # Create your views here.

@@ -21,7 +21,7 @@
 	    <input type="hidden" name="sighting_date" value="{{ Squirrel.sighting_date }}">
 	    <input type="hidden" name="longitude" value="{{ Squirrel.longitude }}">
             <input type="hidden" name="age" value="{{ Squirrel.age }}">
-            <input type="hidden" name="unique_id" value="{{ Squirrel.unique_id }}">
+	    <input type="hidden" name="unique_id" value="{{ Squirrel.unique_id }}">
 	    <p class="input-group-append">
               <button class="btn btn-outline-secondary" type="submit">Confirm</button>
             </p>
@@ -144,46 +144,5 @@
       </div>
     </div>
   </div>
-{% endblock %}
-{% block extra_footer %}
-  <script>
-    function csrfSafeMethod(method) {
-      // these HTTP methods do not require CSRF protection
-      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-    }
-
-    var csrftoken = $("[name=csrfmiddlewaretoken]").val();
-    $.ajaxSetup({
-      beforeSend: function(xhr, settings) {
-        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-          xhr.setRequestHeader("X-CSRFToken", csrftoken);
-        }
-      }
-    });
-
-    $("#submit").submit(function(event) {
-      event.preventDefault();
-
-      var age = $('input[age=age]').val();
-
-      $.post({
-        url: "{% url 'sightings:edit' Squirrel.id %}",
-        data: {
-          squirrel.id: "{{ squirrel.id }}",
-          age: age,
-        },
-        dataType: "json",
-      }).done(function(response) {
-        $("#submit").html('Your request has been received!');
-      }).fail(function(response) {
-        if (response.statusText === "error") {
-          var errors = "Oops, looks like an error on our side. Please try again later.";
-        } else {
-          var errors = response.responseJSON.errors.adopter;
-        }
-        $("#submit").html(errors);
-      });
-    });
-  </script>
 {% endblock %}
 
