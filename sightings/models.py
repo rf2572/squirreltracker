@@ -15,13 +15,13 @@ class Squirrel(models.Model):
             )
 
     latitude = models.FloatField(
-            validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)],
+            validators=[MinValueValidator(40.7644), MaxValueValidator(40.8006)], #uses Central Park coordinates for validation
             help_text=_('Latitude of sighting'),
             blank=True,
             )
 
     longitude = models.FloatField(
-            validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)],
+            validators=[MinValueValidator(-73.9818), MaxValueValidator(-73.9491)], #uses Central Park coordinates for validation
             help_text=_('Longitude of sighting'),
             blank=True,
             )
