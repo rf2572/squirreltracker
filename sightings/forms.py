@@ -23,19 +23,4 @@ class SquirrelForm(ModelForm):
                 'helper_date',
                 ]
 
-class SquirrelForm2(ModelForm):
-    sighting_date = DateField(required=False)
-    shift_choices = (('AM', 'AM'), ('PM', 'PM'))
-    shift = ChoiceField(choices=shift_choices, label="Shift", initial='', widget=Select(), required=False)
-    age_choices = (('adult', 'adult'), ('juvenile', 'juvenile'))
-    age = ChoiceField(choices=age_choices, required=False)
-    class Meta:
-        model=Squirrel
-        fields = [
-                'sighting_date',
-                'unique_id',
-                'latitude',
-                'longitude',
-                'shift',
-                'age',
-                ]
+

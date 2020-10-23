@@ -3,6 +3,8 @@ from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.db.models import Count
 
+import datetime
+
 from .forms import SquirrelForm
 
 from .models import Squirrel
@@ -18,8 +20,10 @@ def index(request):
 def detail(request, squirrel_id):
 
    squirrel = get_object_or_404(Squirrel, pk=squirrel_id)
+   my_date = get_object_or_404(Squirrel, pk=squirrel_id).sighting_date.strftime("%Y-%m-%d")
 
    context = {
+            'my_date':my_date,
             'Squirrel':squirrel,        
             }
    return render(request, 'sightings/detail.html', context)
@@ -29,7 +33,7 @@ def add(request):
     return render(request, 'sightings/add.html', {})
 
 def edit(request, squirrel_id):
-    squirrel = get_object_or_404(Squirrel, pk=squirrel_id)
+    squirrel = get_object_or_404(Squirrel, pk=squirrel_id) 
 
     context = {
             'squirrel':squirrel,
