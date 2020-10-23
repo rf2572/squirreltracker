@@ -2,6 +2,7 @@ from django.forms import ModelForm
 from django.forms import ChoiceField
 from django.forms import Select
 from django.forms import DateField
+from django.forms import FloatField
 
 from .models import Squirrel
 
@@ -11,6 +12,8 @@ class SquirrelForm(ModelForm):
     age_choices = (('adult', 'adult'), ('juvenile', 'juvenile'))
     age = ChoiceField(choices=age_choices, required=False)
     sighting_date = DateField(required=False)
+    longitude = FloatField(required=False)
+    latitude = FloatField(required=False)
     class Meta:
         model = Squirrel
         fields = [
