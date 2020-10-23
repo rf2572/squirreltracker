@@ -8,18 +8,18 @@ from sightings.models import Squirrel
 class Command(BaseCommand):
     help = 'Get Squirrels into database'
    
-   def add_arguments(self, parser):
+    def add_arguments(self, parser):
         parser.add_argument('rows.csv', help='file containing squirrel sightings')
    
-   def handle(self, *args, **options):
+    def handle(self, *args, **options):
         file_ = options['rows.csv']
        
-       with open(file_) as fp:
+        with open(file_) as fp:
             reader = csv.DictReader(fp)
            
-           repeats = []
+            repeats = []
            
-           for item in reader:
+            for item in reader:
                 if item['Unique Squirrel ID'] not in repeats:
                     obj = Squirrel()
                     obj.unique_id = item['Unique Squirrel ID']
