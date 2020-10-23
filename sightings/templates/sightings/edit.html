@@ -3,14 +3,16 @@
 {% load static %}
 {% block title %} - Success!{% endblock %}
 {% block main %}
-  <div class="album py-5 bg-light">
+<section class="jumbotron text-center">
     <div class="container">
-         <p> <span class="text-muted font-italic">Operation successful! Your sighting was updated in the database.</span>
-         </p><br>
-         <div class="col-md-4">
-                <a href="{% url 'sightings:detail' squirrel.id %}">View updated sighting.</a>
-         </div>
+      <h1>Success!</h1>
+      <p class="lead text-muted">Operation successful! Your sightingg was updated in the database.</p>
+      <p>
+        <a href="{% url 'sightings:detail' squirrel.id %}" class="btn btn-primary my-2">View updated sighting.</a>
+       
+      </p>
     </div>
-  </div>
+  </section>
+
 {% endblock %}
 ~              
