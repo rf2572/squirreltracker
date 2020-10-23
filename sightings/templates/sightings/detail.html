@@ -19,7 +19,7 @@
                    aria-label="Updated Latitude"/>
             </p>
 	    <input type="hidden" name="shift" value="{{ Squirrel.shift }}">
-	    <input type="hidden" name="sighting_date" value="{{ Squirrel.helper_date }}">
+	    <input type="hidden" name="sighting_date" value="{{ my_date }}">
 	    <input type="hidden" name="helper_date" value="{{ Squirrel.helper_date }}">
 	    <input type="hidden" name="longitude" value="{{ Squirrel.longitude }}">
             <input type="hidden" name="age" value="{{ Squirrel.age }}">
@@ -39,7 +39,7 @@
                    aria-label="Updated Longitude"/>
             </p>
             <input type="hidden" name="shift" value="{{ Squirrel.shift }}">
-            <input type="hidden" name="sighting_date" value="{{ Squirrel.helper_date }}">
+            <input type="hidden" name="sighting_date" value="{{ my_date }}">
             <input type="hidden" name="helper_date" value="{{ Squirrel.helper_date }}">
 	    <input type="hidden" name="latitude" value="{{ Squirrel.latitude }}">
             <input type="hidden" name="age" value="{{ Squirrel.age }}">
@@ -59,7 +59,7 @@
                 </select>
             </p>
             <input type="hidden" name="longitude" value="{{ Squirrel.longitude }}">
-            <input type="hidden" name="sighting_date" value="{{ Squirrel.helper_date }}">
+            <input type="hidden" name="sighting_date" value="{{ my_date }}">
             <input type="hidden" name="helper_date" value="{{ Squirrel.helper_date }}">
             <input type="hidden" name="latitude" value="{{ Squirrel.latitude }}">
             <input type="hidden" name="age" value="{{ Squirrel.age }}">
@@ -72,14 +72,14 @@
 	  <form id="SquirrelForm" method="post" action="{% url 'sightings:edit' Squirrel.id %}" class="input-group mb-3">
             {% csrf_token %}
             <p>
-	    	<label for="sighting_date">Update date:</label>
+	    	<label for="helper_date">Update date:</label>
 	    	<input type="DateInput"
                    name="sighting_date"
-                   class="form-control"
+		   class="form-control"
                    placeholder="YYYY-MM-DD"
                    aria-label="Updated Date"/>
             </p>
-            <input type="hidden" name="helper_date" value="{{ Squirrel.helper_date }}">
+            <input type="hidden" name="helper_date" value="{{ Squirrel.helper_date }}"> 
  	    <input type="hidden" name="unique_id" value="{{ Squirrel.unique_id }}">         
             <input type="hidden" name="shift" value="{{ Squirrel.shift }}">
             <input type="hidden" name="latitude" value="{{ Squirrel.latitude }}">
@@ -99,7 +99,7 @@
   		</select>
 	    </p>
             <input type="hidden" name="shift" value="{{ Squirrel.shift }}">
-            <input type="hidden" name="sighting_date" value="{{ Squirrel.helper_date }}">
+            <input type="hidden" name="sighting_date" value="{{ my_date }}">
             <input type="hidden" name="helper_date" value="{{ Squirrel.helper_date }}">
             <input type="hidden" name="latitude" value="{{ Squirrel.latitude }}">
             <input type="hidden" name="longitude" value="{{ Squirrel.longitude }}">
