@@ -5,6 +5,16 @@
 {% block title %} - All Squirrel Sightings{% endblock %}
 
 {% block main %}
+<section class="jumbotron text-center">
+    <div class="container">
+      <h1>List of Squirrel Sightings</h1>
+      <p class="lead text-muted"> You can find the most up to date compilation of Central Park squirrel sightings below. Click on any sighting to edit its information or add a sighting below!</p>
+      <p>
+        <a href="{% url 'sightings:add' %}" class="btn btn-primary my-2">Add new sighting.</a>
+      </p>
+    </div>
+  </section>
+
   <div class="album py-5 bg-light">
     <div class="container">
 	    <p><a href="{% url 'sightings:add' %}">Add new sighting.</a></p>
